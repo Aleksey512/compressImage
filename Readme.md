@@ -15,7 +15,7 @@
   > pip install requirements.txt
   
 - запустить скрипт *compress.py*
-  > python compress.py **image_name** or **dir_path**
+  > python compress.py **-i image_name** or **-d dir_path**
 
 ### Параметры запуска
 > Флаг -i, --image - Конвертирует указанный файл
