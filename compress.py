@@ -21,30 +21,22 @@ def compress_img(image_name, new_size_ratio=0.9, quality=90, width=None, height=
     img = Image.open(image_name)
 
     if new_size_ratio < 1.0:
-        # if resizing ratio is below 1.0, then multiply width & height with this ratio to reduce image size
         img = img.resize((int(img.size[0] * new_size_ratio), int(img.size[1] * new_size_ratio)), Image.ANTIALIAS)
 
     elif width and height:
-        # if width and height are set, resize with them instead
         img = img.resize((width, height), Image.ANTIALIAS)
 
-    # split the filename and extension
     fullname, ext = os.path.splitext(image_name)
 
     if to_jpg:
-        # change the extension to JPEG
         new_filename = f"{fullname}_compressed.jpg"
     else:
-        # retain the same extension of the original image
         new_filename = f"{fullname}_compressed{ext}"
 
     try:
-        # save the image with the corresponding quality and optimize set to True
         img.save(new_filename, quality=quality, optimize=True)
     except OSError:
-        # convert the image to RGB mode first
         img = img.convert("RGB")
-        # save the image with the corresponding quality and optimize set to True
         img.save(new_filename, quality=quality, optimize=True)
 
 
